@@ -26,7 +26,7 @@ pipeline {
                     env.gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                     echo "Commit ID: ${gitCommit}"
                 }
-                sh 'MAVEN_OPTS="-Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss.SSS" mvn clean package'
+                sh 'MAVEN_OPTS="-Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.dateTimeFormat=HH:mm:ss.SSS" mvn -B -s settings.xml -DskipTests clean package'
             }
             post {
                 always {
